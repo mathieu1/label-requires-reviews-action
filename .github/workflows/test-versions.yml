@@ -1,0 +1,60 @@
+# This workflow will set a number or reviewers depending on the tags
+name: Label Reviews
+# Trigger the workflow on pull requests
+on:
+  pull_request_review:
+    types:
+      - submitted
+      - edited
+      - dismissed
+  pull_request:
+    types:
+      - synchronize
+      - labeled
+      - unlabeled
+jobs:
+  test-apply-self:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with: 
+          ref: feat/apply-self
+
+      - name: Test mathieu1/label-requires-reviews-action@feat/apply-self
+        uses: mathieu1/label-requires-reviews-action@feat/apply-self
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  test-1-0-1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with: 
+          ref: feat/apply-self
+
+      - name: Test travelperk/label-requires-reviews-action@1.0.1
+        uses: travelperk/label-requires-reviews-action@1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  test-ee3e82e32650be13bc075ee00bbf5ff95bfc01cd:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with: 
+          ref: feat/apply-self
+
+      - name: Test travelperk/label-requires-reviews-action@ee3e82e32650be13bc075ee00bbf5ff95bfc01cd
+        uses: travelperk/label-requires-reviews-action@ee3e82e32650be13bc075ee00bbf5ff95bfc01cd
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  test-1-2-0:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with: 
+          ref: feat/apply-self
+
+      - name: Test travelperk/label-requires-reviews-action@1.2.0
+        uses: travelperk/label-requires-reviews-action@1.2.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
